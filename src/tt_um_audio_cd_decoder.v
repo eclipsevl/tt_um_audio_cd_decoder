@@ -23,5 +23,6 @@ efm_lut_decoder xi_efm_lut_decoder
 );
     
 assign uio_oe = 8'h00;
+assign uio_out[2:7] = 6'h00;
 
 endmodule
