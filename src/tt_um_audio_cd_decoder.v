@@ -15,7 +15,7 @@ module tt_um_audio_cd_decoder (
 
 efm_lut_decoder xi_efm_lut_decoder
 (
-  .i_efm_symb      (ui_in, uio_in[5:0]),
+  .i_efm_symb      ({ui_in, uio_in[5:0]}),
   .o_data          (uo_out),
 	
   .o_s0_sync      (uio_out[0]),
