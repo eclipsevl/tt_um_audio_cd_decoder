@@ -7,7 +7,7 @@ project:
 # Source files must be in ./src and you must list each source file separately
   source_files:        
     - tt_um_audio_cd_decoder.v
-#    - decoder.v
+    - efm_lut_decoder.v
   top_module:  "tt_um_audio_cd_decoder"
 
 # How many tiles your design occupies? A single tile is about 167x108 uM.
