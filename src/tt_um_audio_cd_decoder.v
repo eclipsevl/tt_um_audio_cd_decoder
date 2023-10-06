@@ -13,7 +13,7 @@ module tt_um_audio_cd_decoder (
   input  wire       rst_n
 );
 
-efm_lut_decode xi_efm_lut_decoder
+efm_lut_decoder xi_efm_lut_decoder
 (
   .i_efm_symb      (ui_in, uio_in[5:0]),
   .o_data          (uo_out),
