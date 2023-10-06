@@ -24,7 +24,7 @@ documentation:
   author:       "Vladislav Knyazkov"      # Your name
   title:        "tt_um_audio_cd_decoder"      # Project title
   language:     "Verilog" # other examples include Verilog, Amaranth, VHDL, etc
-  description:  ""      # Short description of what your project does
+  description:  "Audio CD decoder"      # Short description of what your project does
 
 # Longer description of how the project works. You can use standard markdown format.
   how_it_works: |
