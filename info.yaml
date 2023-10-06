@@ -5,8 +5,8 @@ project:
 
 # If using an HDL, set wokwi_id as 0 and uncomment and list your source files here. 
 # Source files must be in ./src and you must list each source file separately
-#  source_files:        
-#    - counter.v
+  source_files:        
+    - tt_um_audio_cd_decoder.v
 #    - decoder.v
 #  top_module:  "tt_um_example"      # Put the name of your top module here, must start with "tt_um_". Make it unique by including your github username
 
@@ -21,9 +21,9 @@ yaml_version: 4
 #
 # Here is a great example: https://github.com/davidsiaw/tt02-davidsiaw-stackcalc/blob/38c5647f83aad2aec675d566aa3d67b98f0aac81/info.yaml
 documentation: 
-  author:       ""      # Your name
-  title:        ""      # Project title
-  language:     "Wokwi" # other examples include Verilog, Amaranth, VHDL, etc
+  author:       "Vladislav Knyazkov"      # Your name
+  title:        "tt_um_audio_cd_decoder"      # Project title
+  language:     "Verilog" # other examples include Verilog, Amaranth, VHDL, etc
   description:  ""      # Short description of what your project does
 
 # Longer description of how the project works. You can use standard markdown format.
@@ -36,8 +36,8 @@ documentation:
 
 # A description of what the inputs do (e.g. red button, SPI CLK, SPI MOSI, etc).
   inputs:               
-    - none
-    - none
+    - hf_data
+    - hf_clock
     - none
     - none
     - none
