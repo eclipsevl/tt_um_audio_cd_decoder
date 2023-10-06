@@ -13,8 +13,15 @@ module tt_um_audio_cd_decoder (
   input  wire       rst_n
 );
 
-assign uo_out = ui_in;
-assign uio_out = 8'h00;
+efm_lut_decode xi_efm_lut_decoder
+(
+  .i_efm_symb      (ui_in, uio_in[5:0]),
+  .o_data          (uo_out),
+	
+  .o_s0_sync      (uio_out[0]),
+  .o_s1_sync      (uio_out[1])
+);
+    
 assign uio_oe = 8'h00;
 
 endmodule
