@@ -1,4 +1,4 @@
-module opencdr_efm_lut
+module efm_lut_decoder
 (
   input   [13:0] i_efm_symb,
   output  [7:0]  o_data,
