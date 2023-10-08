@@ -8,3 +8,4 @@ src/__pycache__/
 src/__tinytapeout
 src/results.xml
 src/user_config.tcl
+model/__pycache__/rs_euclidian_alg.cpython-310.pyc
