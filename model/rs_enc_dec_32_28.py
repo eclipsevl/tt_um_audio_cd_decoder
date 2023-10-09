@@ -1,4 +1,4 @@
-# RS(32, 28) encoder, textbook example
+# RS(32, 28) encoder
 # Vladislav Knyazkov, October 2023
 import random
 from rs_euclidian_alg import eclid_alg
@@ -35,7 +35,6 @@ def gf_inv(a):
         print("Error! Div by 0")
     for i in range(2**gfm):
         if(gf_mult(a, i) == 1):
-            #print(f"inv({a}) = {i}")
             return i
     
     return 0
@@ -111,8 +110,12 @@ def eclid_alg(s3, s2, s1, s0, verbose = 0):
         a0 = 0
         a1 = s0
         a2 = s1
-        a3 = s2        
+        a3 = s2 
 
+        if(s2 == 0):
+            print(f"s3={s3}, s2={s2},s1={s1}, s0={s0}")       
+
+   
     # register b: X^4
     b0 = 0
     b1 = 0
@@ -431,58 +434,58 @@ def decode(RX, verbose = 0):
 
     return DX
 
-
-# Message polynomial
-MX = [0] * n
-#EX = [0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 2, 0, 0]
-EX = [0] * n
-RX = [0] * n
-
-
-iterations = 1
-corrected = 0
-failed = 0
-
-for iteration in range(iterations):
-    # generate random message
-    for i in range (k):
-        MX[i] = random.choice(range(2**gfm))
-        EX[i] = 0
-    
-    for i in range (n):
-        EX[i] = 0
-
-    # generate random errors
-    err_num = random.choice([1, 2])
-    
-    for i in range(err_num):
-        EX[random.choice(range(k))] = random.choice(range(2**gfm))
+if __name__ == "__main__":
+    # Message polynomial
+    MX = [0] * n
+    #EX = [0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 2, 0, 0]
+    EX = [0] * n
+    RX = [0] * n
 
 
+    iterations = 1
+    corrected = 0
+    failed = 0
 
-    MX = [254, 182, 6, 40, 6, 116, 0, 164, 2, 51, 0, 104, 203, 64, 173, 146, 11, 28, 145, 162, 6, 54, 5, 0, 15, 28, 5, 169]
-    TX = encode(MX)
-    #TX=[254, 182, 6, 40, 6, 116, 0, 164, 2, 51, 0, 104, 203, 64, 173, 146, 11, 28, 145, 162, 6, 54, 5, 0, 15, 28, 5, 169, 203, 234, 65, 120]
-    RX = TX#add_error(TX, EX)
-    #RX = [247, 118, 234, 156, 112, 100, 248, 130, 248, 9, 245, 90, 149, 211, 3, 208, 253, 172, 255, 212, 8, 108, 249, 59, 11, 86, 248, 81, 37, 8, 31, 220]
-    DX = decode(RX, 1)
+    for iteration in range(iterations):
+        # generate random message
+        for i in range (k):
+            MX[i] = random.choice(range(2**gfm))
+            EX[i] = 0
+        
+        for i in range (n):
+            EX[i] = 0
 
-    if(TX == DX):
-        #print(DX)
-        corrected = corrected + 1
+        # generate random errors
+        err_num = random.choice([1, 2])
+        
+        for i in range(err_num):
+            EX[random.choice(range(k))] = random.choice(range(2**gfm))
 
-        print(MX)
-        print(TX)
-        #print(RX)
-        #print(DX)
 
-        #print("Corrected!")
-    else:
-        print(MX)
-        print(TX)
-        print(RX)
-        print(DX)
-        failed = failed + 1
-        print("FAIL!")
 
-print(f"Summary: corrected: {corrected}/{iterations}, failed: {failed}/{iterations}")
+        MX = [254, 182, 6, 40, 6, 116, 0, 164, 2, 51, 0, 104, 203, 64, 173, 146, 11, 28, 145, 162, 6, 54, 5, 0, 15, 28, 5, 169]
+        TX = encode(MX)
+        #TX=[254, 182, 6, 40, 6, 116, 0, 164, 2, 51, 0, 104, 203, 64, 173, 146, 11, 28, 145, 162, 6, 54, 5, 0, 15, 28, 5, 169, 203, 234, 65, 120]
+        RX = TX#add_error(TX, EX)
+        RX = [32, 24, 9, 58, 243, 130, 31, 203, 254, 63, 228, 105, 85, 191, 59, 146, 252, 226, 26, 0, 236, 76, 251, 132, 32, 182, 239, 187, 39, 43, 51, 254]
+        DX = decode(RX, 1)
+
+        if(TX == DX):
+            #print(DX)
+            corrected = corrected + 1
+
+            print(MX)
+            print(TX)
+            #print(RX)
+            #print(DX)
+
+            #print("Corrected!")
+        else:
+            print(MX)
+            print(TX)
+            print(RX)
+            print(DX)
+            failed = failed + 1
+            print("FAIL!")
+
+    print(f"Summary: corrected: {corrected}/{iterations}, failed: {failed}/{iterations}")
