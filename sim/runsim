@@ -1,0 +1,5 @@
+rm *.vcd
+
+iverilog -o tb tb.v
+vvp tb
+gtkwave tb.vcd
