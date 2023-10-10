@@ -13,16 +13,21 @@ module tt_um_audio_cd_decoder (
   input  wire       rst_n
 );
 
-efm_lut_decoder xi_efm_lut_decoder
-(
-  .i_efm_symb      ({ui_in, uio_in[5:0]}),
-  .o_data          (uo_out),
-	
-  .o_s0_sync      (uio_out[0]),
-  .o_s1_sync      (uio_out[1])
-);
-    
+reg  [7:0] reg0;
+wire [7:0] w_mult_out;
+
+gf256_mult xi_mult(.A(ui_in), .B(uio_in), .X(w_mult_out));
+
+always@(posedge clk or negedge rst_n)
+begin
+    if(!rst_n)
+        reg0 <= 8'h00;
+    else
+        reg0 <= w_mult_out;
+end
+
 assign uio_oe = 8'h00;
-assign uio_out[2:7] = 6'h00;
+assign uio_out = 8'h00;
+assign uo_out = reg0;
 
 endmodule
