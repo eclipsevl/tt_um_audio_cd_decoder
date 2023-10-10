@@ -1,1 +1,2 @@
 gf_mult + 8 regs @ 50 MHz: 186 cells (~11.5%)
+gf_mult + 8 regs @ 25 MHz:  cells (~11.5%)
