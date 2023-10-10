@@ -16,7 +16,7 @@ module tt_um_audio_cd_decoder (
 reg  [7:0] reg0;
 wire [7:0] w_mult_out;
 
-gf256_mult xi_mult(.A(ui_in), .B(8'h08), .X(w_mult_out));
+gf256_mult xi_mult(.A(ui_in), .B(8'h01), .X(w_mult_out));
 
 always@(posedge clk or negedge rst_n)
 begin
