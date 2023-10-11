@@ -59,7 +59,7 @@ gf256_mult xi_m3(.A(w_s3), .B(8'h08), .X(w_m3));
 
 always@(posedge i_clk or negedge i_resb)
 begin
-    if(!i_resb | i_frame_sync)
+    if(!i_resb)
     begin
         reg0 <= 8'h00;
         reg1 <= 8'h00;
