@@ -43,7 +43,7 @@ rs_dec_syndrome_calc xi_rs_dec_syndrome_calc
 always@(posedge clk)
 begin
   if(w_rdy)
-    r_latch <= {w_w3, w_s2, w_s1, w_s0};
+    r_latch <= {w_s3, w_s2, w_s1, w_s0};
   else
     r_latch <= {r_latch[23:0], 8'h00};
 end
