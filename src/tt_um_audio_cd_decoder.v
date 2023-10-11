@@ -45,7 +45,7 @@ begin
   if(w_rdy)
     r_latch <= {w_w3, w_s2, w_s1, w_s0};
   else
-    r_latch <= {r_latch[23:0], 8'h00;}
+    r_latch <= {r_latch[23:0], 8'h00};
 end
 
 assign uio_oe = r_latch[31:24];
