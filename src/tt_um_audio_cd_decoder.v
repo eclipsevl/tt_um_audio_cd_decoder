@@ -13,21 +13,43 @@ module tt_um_audio_cd_decoder (
   input  wire       rst_n
 );
 
-reg  [7:0] reg0;
-wire [7:0] w_mult_out;
+wire [7:0] w_s0;
+wire [7:0] w_s1;
+wire [7:0] w_s2;
+wire [7:0] w_s3;
 
-gf256_mult xi_mult(.A(ui_in), .B(8'h01), .X(w_mult_out));
+wire w_rdy;
 
-always@(posedge clk or negedge rst_n)
+reg [31:0] r_latch;
+
+rs_dec_syndrome_calc xi_rs_dec_syndrome_calc
+(
+    .i_clk(clk),
+    .i_resb(rst_n),
+
+    .i_frame_sync(ena),
+
+    .i_data(ui_in),
+    .i_data_sync(uio_in[0]),
+
+    .o_s0(w_s0),
+    .o_s1(w_s1),
+    .o_s2(w_s2),
+    .o_s3(w_s3),
+
+    .o_ready(w_rdy)
+);
+
+always@(posedge clk)
 begin
-    if(!rst_n)
-        reg0 <= 8'h00;
-    else
-        reg0 <= w_mult_out;
+  if(w_rdy)
+    r_latch <= {w_w3, w_s2, w_s1, w_s0};
+  else
+    r_latch <= {r_latch[23:0], 8'h00;}
 end
 
-assign uio_oe = 8'h00;
+assign uio_oe = r_latch[31:24];
 assign uio_out = 8'h00;
-assign uo_out = reg0;
+assign uo_out = 8'h00;
 
 endmodule

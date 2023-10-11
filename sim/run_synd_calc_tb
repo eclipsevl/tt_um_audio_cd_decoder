@@ -1,0 +1,3 @@
+rm tb
+iverilog -o tb tb_rs_dec_syndrome_calc_test.v ../src/rs/*.v
+vvp tb
