@@ -78,6 +78,8 @@ begin
             reg2 <= w_m2;
             reg3 <= w_m3;
         end
+
+        r_byte_cntr <= r_byte_cntr + 5'h1;
     end
 end
 
