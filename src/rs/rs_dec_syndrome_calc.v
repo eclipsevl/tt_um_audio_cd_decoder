@@ -86,6 +86,6 @@ assign o_s1 = reg1;
 assign o_s2 = reg2;
 assign o_s3 = reg3;
 
-assign o_ready = o_ready;
+assign o_ready = &r_byte_cntr;
 
 endmodule
