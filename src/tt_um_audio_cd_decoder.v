@@ -12,7 +12,7 @@ module tt_um_audio_cd_decoder (
   input  wire       clk,
   input  wire       rst_n
 );
-
+/*
 wire [7:0] w_s0;
 wire [7:0] w_s1;
 wire [7:0] w_s2;
@@ -47,8 +47,10 @@ begin
   else
     r_latch <= {r_latch[23:0], 8'h00};
 end
+*/
 
-assign uio_oe = r_latch[31:24];
+gf256_inv xi_gf256_inv(.x(ui_in), .y(uio_oe))
+//assign uio_oe = r_latch[31:24];
 assign uio_out = 8'h00;
 assign uo_out = 8'h00;
 

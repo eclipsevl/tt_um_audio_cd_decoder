@@ -1,0 +1,34 @@
+[*]
+[*] GTKWave Analyzer v3.3.107 (w)1999-2020 BSI
+[*] Fri Oct 13 18:13:36 2023
+[*]
+[dumpfile] "/Users/vladislav/tt_um_audio_cd_decoder/sim/tb.vcd"
+[dumpfile_mtime] "Fri Oct 13 18:11:15 2023"
+[dumpfile_size] 104546
+[savefile] "/Users/vladislav/tt_um_audio_cd_decoder/sim/syndrome.gtkw"
+[timestart] 2160000
+[size] 1000 600
+[pos] -1 -1
+*-23.405272 2610000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] tb.
+[treeopen] tb.xi_rs_dec_syndrome_calc.
+[sst_width] 193
+[signals_width] 167
+[sst_expanded] 1
+[sst_vpaned_height] 167
+@22
+tb.xi_rs_dec_syndrome_calc.i_data[7:0]
+@28
+tb.xi_rs_dec_syndrome_calc.o_ready
+tb.xi_rs_dec_syndrome_calc.i_data_sync
+tb.xi_rs_dec_syndrome_calc.i_frame_sync
+tb.xi_rs_dec_syndrome_calc.w_rx_rdy
+@23
+tb.xi_rs_dec_syndrome_calc.r_byte_cntr[4:0]
+@22
+tb.xi_rs_dec_syndrome_calc.o_s0[7:0]
+tb.xi_rs_dec_syndrome_calc.o_s1[7:0]
+tb.xi_rs_dec_syndrome_calc.o_s2[7:0]
+tb.xi_rs_dec_syndrome_calc.o_s3[7:0]
+[pattern_trace] 1
+[pattern_trace] 0
