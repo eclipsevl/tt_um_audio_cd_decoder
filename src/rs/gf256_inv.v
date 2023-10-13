@@ -35,12 +35,12 @@ gf256_mult MM6(.A(x32),.B(x32),.X(x64));
 gf256_mult MM7(.A(x64),.B(x64),.X(x128));
 
 gf256_mult MM8(.A(x2),.B(x4),.X(x6));
-gf256_mult MM8(.A(x6),.B(x8),.X(x14));
-gf256_mult MM9(.A(x14),.B(x16),.X(x30));
-gf256_mult MM10(.A(x30),.B(x32),.X(x62));
-gf256_mult MM11(.A(x62),.B(x64),.X(x126));
+gf256_mult MM9(.A(x6),.B(x8),.X(x14));
+gf256_mult MM10(.A(x14),.B(x16),.X(x30));
+gf256_mult MM11(.A(x30),.B(x32),.X(x62));
+gf256_mult MM12(.A(x62),.B(x64),.X(x126));
 
-gf256_mult MM11(.A(x126),.B(x128),.X(x254));
+gf256_mult MM13(.A(x126),.B(x128),.X(x254));
 
 assign y = x254;
 
