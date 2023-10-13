@@ -4,6 +4,8 @@
 module gf256_inv(
     input i_clk,
 
+    input i_start,
+    
     input [7:0] x,
     output [7:0] y
 );
@@ -24,24 +26,21 @@ gf256_mult MM10(.A(x7),.B(x120),.X(x127));
 gf256_mult MM11(.A(x127),.B(x127),.X(x254));
 */
 
-wire [7:0] x2,x4, x8, x16, x32, x64, x128, x6, x14, x30, x62, x126,x254;	 
-	 
-gf256_mult MM1(.A(x),.B(x),.X(x2));
-gf256_mult MM2(.A(x2),.B(x2),.X(x4));
-gf256_mult MM3(.A(x4),.B(x4),.X(x8));
-gf256_mult MM4(.A(x8),.B(x8),.X(x16));
-gf256_mult MM5(.A(x16),.B(x16),.X(x32));
-gf256_mult MM6(.A(x32),.B(x32),.X(x64));
-gf256_mult MM7(.A(x64),.B(x64),.X(x128));
+reg [7:0] r_squares;
+reg [7:0] r_acc;
 
-gf256_mult MM8(.A(x2),.B(x4),.X(x6));
-gf256_mult MM9(.A(x6),.B(x8),.X(x14));
-gf256_mult MM10(.A(x14),.B(x16),.X(x30));
-gf256_mult MM11(.A(x30),.B(x32),.X(x62));
-gf256_mult MM12(.A(x62),.B(x64),.X(x126));
+wire [7:0] w_m0_in, w_m0_out, w_m1_out;
 
-gf256_mult MM13(.A(x126),.B(x128),.X(x254));
+assign w_m0_in = i_start ? x : r_squares;
+gf256_mult xi_m0(.A(w_m0_in),.B(w_m0_in),.X(w_m0_out));
+gf256_mult xi_m2(.A(w_m0_out),.B(r_acc),.X(w_m1_out));
 
-assign y = x254;
+always@(posedge i_clk)
+begin
+    r_squares <= w_m0_out;
+    r_acc <= i_start ? 8'h01 : w_m1_out;
+end
+
+assign y = r_acc;
 
 endmodule

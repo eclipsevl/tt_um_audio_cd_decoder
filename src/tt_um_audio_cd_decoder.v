@@ -49,7 +49,7 @@ begin
 end
 */
 
-gf256_inv xi_gf256_inv(.x(ui_in), .y(uio_oe));
+gf256_inv xi_gf256_inv(.i_clk(clk), .i_start(uio_in[0]), .x(ui_in), .y(uio_oe));
 //assign uio_oe = r_latch[31:24];
 assign uio_out = 8'h00;
 assign uo_out = 8'h00;
