@@ -56,21 +56,33 @@ p = [64,120,54,15,1]
 #print(eval_poly(p,4))
 #print(eval_poly(p,8))
 
+x = 2
+x2 = gf_mult(x,x)
+x4 = gf_mult(x2,x2)
+x8 = gf_mult(x4,x4)
+x16 = gf_mult(x8,x8) 
+x32 = gf_mult(x16,x16) 
+x64 = gf_mult(x32,x32) 
+x128 = gf_mult(x64,x64)
 
+x6 = gf_mult(x2, x4)
+x14 = gf_mult(x6, x8)
+x30 = gf_mult(x14, x16)
+x62 = gf_mult(x30, x32)
+x126= gf_mult(x62, x64)
+x_inv = gf_mult(x126, x128)
 
-m=gf_mult(gf_inv(160),144)
-print(m)
-print(gf_mult(m,160))
-print(gf_mult(m,12))
-print(gf_mult(m,142))
-print(gf_mult(m,72))
+print(f"{x}, inv1: {x_inv}, inv2 :{gf_inv(x)}")
 
-a0s = 1
-a1s = 2
-a2s = 4
-for i in range(223):
-    a0s = gf_mult(a0s,1)
-    a1s = gf_mult(a1s,2)
-    a2s = gf_mult(a2s,4)
-
-print(f"{a0s}, {a1s}, {a2s}")
+print(f"x2: {x2}")
+print(f"x4: {x4}")
+print(f"x8: {x8}")
+print(f"x16: {x16}")
+print(f"x32: {x32}")
+print(f"x64: {x64}")
+print(f"x128: {x128}")
+print(f"x6: {x6}")
+print(f"x14: {x14}")
+print(f"x30: {x30}")
+print(f"x62: {x62}")
+print(f"x126: {x126}")

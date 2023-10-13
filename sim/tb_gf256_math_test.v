@@ -54,14 +54,30 @@ initial begin
     start = 1;
     @(posedge clk)
     #1
-    data = data + 1;
     start = 0;
 
     @(posedge w_rdy);
     #1
     $display("x = %d, inv_x = %d, x*inv_x = %d", data, w_data_inv, w_mult_out);
+    #1000
+    data = data + 1;
     
   end
+
+  /*
+  x2: 4
+x4: 16
+x8: 29
+x16: 76
+x32: 157
+x64: 95
+x128: 133
+x6: 64
+x14: 19
+x30: 96
+x62: 222
+x126: 102
+*/
 
   #1000
   $finish;

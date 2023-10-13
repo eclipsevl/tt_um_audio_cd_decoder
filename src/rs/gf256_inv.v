@@ -26,10 +26,11 @@ always@(posedge i_clk)
 begin
     r_squares <= w_m0_out;
     r_acc <= i_start ? 8'h01 : w_m1_out;
-    r_cntr <= i_start | r_cntr === 7 ? 3'h0 : r_cntr + 1;
+    r_cntr <= i_start ? 3'h0 : 
+        r_cntr === 7 ? r_cntr : r_cntr + 1;
 end
 
 assign y = r_acc;
-assign o_ready = r_cntr===7; 
+assign o_ready = r_cntr === 7; 
 
 endmodule
