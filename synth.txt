@@ -1,4 +1,4 @@
 gf_mult + 8 regs @ 50 MHz: 186 cells (~11.5%)
 gf_mult + 8 regs @ 25 MHz:  cells (~11.5%)
 
-gf256_inv: 755 cells / 45%
+gf256_inv comb: 755 cells / 45%
