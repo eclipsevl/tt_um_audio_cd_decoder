@@ -43,38 +43,7 @@ rs_dec_syndrome_calc xi_rs_dec_syndrome_calc
 
 
 initial begin
-       frame[0] = 32;
-        frame[1] = 24;
-        frame[2] = 9;
-        frame[3] = 58;
-        frame[4] = 243;
-        frame[5] = 130;
-        frame[6] = 31;
-        frame[7] = 203;
-        frame[8] = 254;
-        frame[9] = 63;
-        frame[10] = 228;
-        frame[11] = 105;
-        frame[12] = 85;
-        frame[13] = 191;
-        frame[14] = 59;
-        frame[15] = 146;
-        frame[16] = 252;
-        frame[17] = 226;
-        frame[18] = 26;
-        frame[19] = 0;
-        frame[20] = 236;
-        frame[21] = 76;
-        frame[22] = 251;
-        frame[23] = 132;
-        frame[24] = 32;
-        frame[25] = 182;
-        frame[26] = 239;
-        frame[27] = 187;
-        frame[28] = 39;
-        frame[29] = 43;
-        frame[30] = 51;
-        frame[31] = 254;
+
 
   $dumpfile("tb.vcd");
   $dumpvars(0,tb);
