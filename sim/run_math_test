@@ -1,0 +1,3 @@
+rm tb
+iverilog -o tb tb_gf256_math_test.v ../src/rs/*.v
+vvp tb
