@@ -13,6 +13,8 @@ module tt_um_audio_cd_decoder (
   input  wire       rst_n
 );
 
+wire [7:0] w_rx_data;
+
 wire [7:0] w_s0;
 wire [7:0] w_s1;
 wire [7:0] w_s2;
@@ -27,6 +29,15 @@ wire w_euclid_rdy;
 
 reg [31:0] r_latch;
 
+efm_lut_decoder xi_efm_lut_decoder
+(
+  .i_efm_symb({ui_in, uio_in[7:2]}),
+  .o_data(w_rx_data),
+  
+  .o_s0_sync()
+  .o_s1_sync()
+);
+
 rs_dec_syndrome_calc xi_rs_dec_syndrome_calc
 (
     .i_clk(clk),
@@ -34,7 +45,7 @@ rs_dec_syndrome_calc xi_rs_dec_syndrome_calc
 
     .i_frame_sync(ena),
 
-    .i_data(ui_in),
+    .i_data(w_rx_data),
     .i_data_sync(uio_in[0]),
 
     .o_s0(w_s0),
