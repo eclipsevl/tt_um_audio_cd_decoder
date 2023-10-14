@@ -6,10 +6,10 @@ import random
 # GF(2^4 = 16)
 # Primitive polynomial: x^4 + x + 1
 # Generator polynomial: x^4 + 15x^3 + 3x^2 + x + 12
-n = 15
-k = 11
-poly = 0b10011
-gfm = 4
+n = 32
+k = 28
+poly = 0b100011101
+gfm = 8
 
 def gf_add(a, b):
     return a ^ b
@@ -20,9 +20,9 @@ def gf_mult(x,y):
     m = 0            # m will be product
     for i in range(gfm):
         m = m << 1
-        if m & 0b10000:
+        if m & 0b100000000:
             m = m ^ p
-        if y & 0b01000:
+        if y & 0b010000000:
             m = m ^ x
         y = y << 1
     return m
@@ -32,7 +32,6 @@ def gf_inv(a):
         print("Error! Div by 0")
     for i in range(2**gfm):
         if(gf_mult(a, i) == 1):
-            #print(f"inv({a}) = {i}")
             return i
     
     return 0
@@ -53,8 +52,12 @@ def eclid_alg(s3, s2, s1, s0, verbose = 0):
         a0 = 0
         a1 = s0
         a2 = s1
-        a3 = s2        
+        a3 = s2 
 
+        if(s2 == 0):
+            print(f"s3={s3}, s2={s2},s1={s1}, s0={s0}")       
+
+   
     # register b: X^4
     b0 = 0
     b1 = 0
@@ -236,6 +239,8 @@ def eclid_alg(s3, s2, s1, s0, verbose = 0):
     d2 = sd2
 
     if(verbose):
+        if(verbose):
+            print(f"Substract {ma3}, residue {a3}x2 + {a2}x1 + {a1}")
         print(f"4:\t{a3}\t{a2}\t{a1}\t{a0}\t{b3}\t{b2}\t{b1}\t{b0}\t{c1}\t{c0}\t{d2}\t{d1}\t{d0}")
 
     a3_inv = gf_inv(a3)
@@ -272,6 +277,8 @@ def eclid_alg(s3, s2, s1, s0, verbose = 0):
     gG2 = sd2
 
     if(verbose):
+        if(verbose):
+            print(f"Substract {ma3}, residue {a3}x2 + {a2}x1 + {a1}")
         print(f"Res: ({gG2}x2 + {gG1}x  + {gG0}) + ({gO1}x  + {gO0})")
 
     return [gO1, gO0, gG2, gG1, gG0]
@@ -283,5 +290,5 @@ if __name__ == "__main__":
     print("7,2,11,13")
     eclid_alg(7,2,11,13, 1)
 
-    print("0,11,11,5")
-    eclid_alg(0, 11, 11, 5, 1)
+    print("16,4,2,1")
+    eclid_alg(16,4,2,1, 1)

@@ -16,7 +16,7 @@ wire [7:0] w_s3;
 assign w_s0 = 8'd1;
 assign w_s1 = 8'd2;
 assign w_s2 = 8'd4;
-assign w_s3 = 8'd8;
+assign w_s3 = 8'd16;
 
 wire w_rdy;
 

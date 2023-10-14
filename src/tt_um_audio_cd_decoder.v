@@ -12,13 +12,18 @@ module tt_um_audio_cd_decoder (
   input  wire       clk,
   input  wire       rst_n
 );
-/*
+
 wire [7:0] w_s0;
 wire [7:0] w_s1;
 wire [7:0] w_s2;
 wire [7:0] w_s3;
 
+wire [7:0] w_gg0;
+wire [7:0] w_gg1;
+
 wire w_rdy;
+wire w_euclid_rdy;
+
 
 reg [31:0] r_latch;
 
@@ -40,6 +45,24 @@ rs_dec_syndrome_calc xi_rs_dec_syndrome_calc
     .o_ready(w_rdy)
 );
 
+rs_dec_euclid_alg xi_rs_dec_euclid_alg
+(
+    .i_clk(clk),
+    .i_resb(rst_n),
+
+    .i_synd_sync(w_rdy),
+
+    .i_s0(w_s0),
+    .i_s1(w_s1),
+    .i_s2(w_s2),
+    .i_s3(w_s3),
+
+    .o_gg0(w_gg0),
+    .o_gg1(w_gg1),
+
+    .o_ready(w_euclid_rdy)
+);
+/*
 always@(posedge clk)
 begin
   if(w_rdy)
@@ -49,9 +72,8 @@ begin
 end
 */
 
-gf256_inv xi_gf256_inv(.i_clk(clk), .i_start(uio_in[0]), .x(ui_in), .y(uio_oe));
-//assign uio_oe = r_latch[31:24];
-assign uio_out = 8'h00;
-assign uo_out = 8'h00;
+assign uio_oe = {w_euclid_rdy, 7'h00};
+assign uio_out = w_gg0;
+assign uo_out = w_gg1;
 
 endmodule

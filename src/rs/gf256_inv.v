@@ -24,10 +24,12 @@ gf256_mult xi_m2(.A(r_squares),.B(r_acc),.X(w_m1_out));
 
 always@(posedge i_clk)
 begin
-    r_squares <= w_m0_out;
-    r_acc <= i_start ? 8'h01 : w_m1_out;
-    r_cntr <= i_start ? 3'h0 : 
-        r_cntr === 7 ? r_cntr : r_cntr + 1;
+    if(r_cntr != 4'h7 | i_start)
+    begin 
+        r_squares <= w_m0_out;
+        r_acc     <= i_start ? 8'h01 : w_m1_out;
+        r_cntr    <= i_start ? 3'h0 : r_cntr + 1;
+    end
 end
 
 assign y = r_acc;
