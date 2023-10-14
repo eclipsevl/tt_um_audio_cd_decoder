@@ -169,6 +169,7 @@ gf256_sum xi_sb2(.a(w_ma2), .b(reg_b2), .s(w_sb2));
 
 assign o_gg0 = reg_b2;
 assign o_gg1 = reg_b3;
+assign o_ready = r_state == STATE_IDLE;
 
 always@(r_state)
 begin
