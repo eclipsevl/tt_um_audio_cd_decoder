@@ -12,6 +12,7 @@ project:
     - ./rs/gf256_mult.v
     - ./rs/gf256_inv.v
     - ./rs/rs_dec_syndrome_calc.v
+    - ./rs/rs_dec_euclid_alg.v
   top_module:  "tt_um_audio_cd_decoder"
 
 # How many tiles your design occupies? A single tile is about 167x108 uM.
