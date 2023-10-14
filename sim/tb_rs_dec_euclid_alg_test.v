@@ -13,10 +13,13 @@ wire [7:0] w_s1;
 wire [7:0] w_s2;
 wire [7:0] w_s3;
 
+wire [7:0] w_gg0;
+wire [7:0] w_gg1;
+
 assign w_s0 = 8'd1;
 assign w_s1 = 8'd2;
 assign w_s2 = 8'd4;
-assign w_s3 = 8'd16;
+assign w_s3 = 8'd0;
 
 wire w_rdy;
 
@@ -33,6 +36,9 @@ rs_dec_euclid_alg xi_rs_dec_euclid_alg
     .i_s1(w_s1),
     .i_s2(w_s2),
     .i_s3(w_s3),
+
+    .o_gg0(w_gg0),
+    .o_gg1(w_gg1),
 
     .o_ready(w_rdy)
 );
@@ -54,7 +60,10 @@ initial begin
   @(posedge clk)
   synd_sync = 0;
 
- 
+  @(posedge w_rdy)
+  #1000
+  $display("===============================================================");
+  $display("Result: gg = %dx + %d", w_gg1, w_gg0);
 
   #10000
   $finish;

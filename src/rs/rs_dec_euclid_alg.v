@@ -92,7 +92,7 @@ begin
                 reg_b3 <= w_sb2;               
             end
 
-            r_gf256_inv_start <= w_gf256_inv_done ?         1'b1 :         1'b0;
+            r_gf256_inv_start <= w_gf256_inv_done ?         1'b0 :         1'b0;
             r_state           <= w_gf256_inv_done ? STATE_SUB_X0 : STATE_SUB_X1;
           end
           

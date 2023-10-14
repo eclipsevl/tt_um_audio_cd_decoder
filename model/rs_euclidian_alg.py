@@ -291,4 +291,4 @@ if __name__ == "__main__":
     eclid_alg(7,2,11,13, 1)
 
     print("16,4,2,1")
-    eclid_alg(16,4,2,1, 1)
+    eclid_alg(0,4,2,1, 1)

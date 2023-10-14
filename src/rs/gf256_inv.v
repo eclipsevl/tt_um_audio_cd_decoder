@@ -33,6 +33,6 @@ begin
 end
 
 assign y = r_acc;
-assign o_ready = r_cntr === 7; 
+assign o_ready = r_cntr === 7 & ~i_start; 
 
 endmodule
