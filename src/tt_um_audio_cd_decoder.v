@@ -34,7 +34,7 @@ efm_lut_decoder xi_efm_lut_decoder
   .i_efm_symb({ui_in, uio_in[7:2]}),
   .o_data(w_rx_data),
   
-  .o_s0_sync()
+  .o_s0_sync(),
   .o_s1_sync()
 );
 
