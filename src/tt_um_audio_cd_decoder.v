@@ -23,6 +23,10 @@ wire [7:0] w_s3;
 wire [7:0] w_gg0;
 wire [7:0] w_gg1;
 
+wire [7:0] w_gl0;
+wire [7:0] w_gl1;
+wire [7:0] w_gl2;
+
 wire w_rdy;
 wire w_euclid_rdy;
 
@@ -71,6 +75,10 @@ rs_dec_euclid_alg xi_rs_dec_euclid_alg
     .o_gg0(w_gg0),
     .o_gg1(w_gg1),
 
+    .o_gl0(w_gl0),
+    .o_gl1(w_gl1),
+    .o_gl2(w_gl2),
+
     .o_ready(w_euclid_rdy)
 );
 /*
@@ -84,7 +92,7 @@ end
 */
 
 assign uio_oe = {w_euclid_rdy, 7'h00};
-assign uio_out = w_gg0;
-assign uo_out = w_gg1;
+assign uio_out = w_gl0^w_gl1^w_gl2;
+assign uo_out = w_gg1^w_gg0;
 
 endmodule

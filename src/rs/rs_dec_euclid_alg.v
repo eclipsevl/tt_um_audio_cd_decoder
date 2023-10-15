@@ -18,6 +18,10 @@ module rs_dec_euclid_alg
     output [7:0] o_gg0,
     output [7:0] o_gg1,
 
+    output [7:0] o_gl0,
+    output [7:0] o_gl1,
+    output [7:0] o_gl2,
+
     output       o_ready
 );
 
@@ -31,14 +35,28 @@ reg [7:0] reg_b1;
 reg [7:0] reg_b2;
 reg [7:0] reg_b3;
 
+reg [7:0] reg_c0;
+reg [7:0] reg_c1;
+
+reg [7:0] reg_d0;
+reg [7:0] reg_d1;
+reg [7:0] reg_d2;
+
 wire [7:0] w_ma0;
 wire [7:0] w_ma1;
 wire [7:0] w_ma2;
 wire [7:0] w_ma3;
 
+wire [7:0] w_mc0;
+wire [7:0] w_mc1;
+
 wire [7:0] w_sb0;
 wire [7:0] w_sb1;
 wire [7:0] w_sb2;
+
+wire [7:0] w_sd0;
+wire [7:0] w_sd1;
+wire [7:0] w_sd2;
 
 reg [3:0] r_state;
 
@@ -73,6 +91,14 @@ begin
             reg_b1 <= 8'h00;
             reg_b2 <= 8'h00;
             reg_b3 <= 8'h01;
+
+            // div result regs
+            reg_c0 <= 8'h01;
+            reg_c1 <= 8'h00;
+
+            reg_d0 <= 8'h00;
+            reg_d1 <= 8'h00;
+            reg_d2 <= 8'h00;
             
             // start calculation inv(a3) for next state
             r_gf256_inv_start <= 1'b1;
@@ -89,7 +115,11 @@ begin
                 reg_b0 <= 8'h00;
                 reg_b1 <= w_sb0;
                 reg_b2 <= w_sb1;
-                reg_b3 <= w_sb2;               
+                reg_b3 <= w_sb2; 
+            
+                reg_d0 <= w_sd0;
+                reg_d1 <= w_sd1;
+                reg_d2 <= w_sd2;               
             end
 
             r_gf256_inv_start <= w_gf256_inv_done ?         1'b0 :         1'b0;
@@ -107,6 +137,10 @@ begin
                 reg_b1 <= w_sb0;
                 reg_b2 <= w_sb1;
                 reg_b3 <= w_sb2;
+            
+                reg_d0 <= w_sd0;
+                reg_d1 <= w_sd1;
+                reg_d2 <= w_sd2; 
             end
 
             r_gf256_inv_start <= w_gf256_inv_done ?             1'b0 :         1'b0;
@@ -130,6 +164,13 @@ begin
                 reg_a1 <= reg_b1;
                 reg_a2 <= reg_b2;
                 reg_a3 <= reg_b3;  
+
+                reg_d0 <= reg_c0;
+                reg_d1 <= reg_c1;
+                reg_d2 <= 8'h00;
+
+                reg_c0 <= reg_d0;
+                reg_c1 <= reg_d1;
 
                 r_state <= STATE_SUB_X1;
                 r_gf256_inv_start <= 1'b1;
@@ -163,12 +204,24 @@ gf256_mult xi_ma1(.A(w_ma3), .B(reg_a1), .X(w_ma1));
 gf256_mult xi_ma2(.A(w_ma3), .B(reg_a2), .X(w_ma2));
 gf256_mult xi_ma3(.A(w_a3_inv), .B(reg_b3), .X(w_ma3));
 
+gf256_mult xi_mc0(.A(w_ma3), .B(reg_c0), .X(w_mc0));
+gf256_mult xi_mc1(.A(w_ma3), .B(reg_c1), .X(w_mc1));
+
 gf256_sum xi_sb0(.a(w_ma0), .b(reg_b0), .s(w_sb0));
 gf256_sum xi_sb1(.a(w_ma1), .b(reg_b1), .s(w_sb1));
 gf256_sum xi_sb2(.a(w_ma2), .b(reg_b2), .s(w_sb2));
 
+gf256_sum xi_sd0(.a(w_mc0), .b(reg_c0), .s(w_sd0));
+gf256_sum xi_sd1(.a(w_mc1), .b(reg_c1), .s(w_sd1));
+gf256_sum xi_sd2(.a(w_mc0), .b(reg_c2), .s(w_sd2));
+
 assign o_gg0 = reg_b2;
 assign o_gg1 = reg_b3;
+
+assign o_gl0 = reg_d0;
+assign o_gl1 = reg_d1;
+assign o_gl2 = reg_d2;
+
 assign o_ready = r_state == STATE_IDLE;
 
 always@(r_state)
