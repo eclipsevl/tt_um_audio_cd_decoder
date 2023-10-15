@@ -213,7 +213,7 @@ gf256_sum xi_sb2(.a(w_ma2), .b(reg_b2), .s(w_sb2));
 
 gf256_sum xi_sd0(.a(w_mc0), .b(reg_c0), .s(w_sd0));
 gf256_sum xi_sd1(.a(w_mc1), .b(reg_c1), .s(w_sd1));
-gf256_sum xi_sd2(.a(w_mc0), .b(reg_c2), .s(w_sd2));
+gf256_sum xi_sd2(.a(w_mc0^w_mc1), .b(reg_c1), .s(w_sd2));
 
 assign o_gg0 = reg_b2;
 assign o_gg1 = reg_b3;
