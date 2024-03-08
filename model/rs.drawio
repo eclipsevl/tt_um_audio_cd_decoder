@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-03-08T10:23:20.749Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="D2vGoMANeo5GdAr-7d0s" version="24.0.2" type="github" pages="4">
+<mxfile host="app.diagrams.net" modified="2024-03-08T10:24:01.039Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="O7KJkhHrEVnhXxtwBavR" version="24.0.2" type="github" pages="4">
   <diagram name="RS(32,28) decoder - simple" id="HMX5MtgO46n08s3P04wy">
     <mxGraphModel dx="11327" dy="10326" grid="1" gridSize="10" guides="0" tooltips="1" connect="0" arrows="0" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -2841,7 +2841,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="0l0-lh6EPheky-Wrpzr5" name="Страница — 4">
-    <mxGraphModel dx="1615" dy="869" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1909" dy="1027" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -3090,7 +3090,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="FHRN6SKo1aoqLI2uxfTE-65" value="Fill level" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="1280" y="205" width="60" height="20" as="geometry" />
+          <mxGeometry x="1290" y="350" width="60" height="20" as="geometry" />
         </mxCell>
         <mxCell id="FHRN6SKo1aoqLI2uxfTE-66" value="" style="triangle;whiteSpace=wrap;html=1;rotation=-180;" parent="1" vertex="1">
           <mxGeometry x="1110" y="350" width="110" height="100" as="geometry" />
@@ -3106,6 +3106,9 @@
             <mxPoint x="1280" y="370" as="sourcePoint" />
             <mxPoint x="1220" y="370" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="dSGERmLUTsI57S8F1mep-2" value="VCO" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="530" y="240" width="60" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
